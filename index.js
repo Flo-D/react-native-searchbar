@@ -34,6 +34,7 @@ export default class Search extends Component {
     backCloseSize: PropTypes.number,
     fontSize: PropTypes.number,
     heightAdjust: PropTypes.number,
+    customWidth: PropTypes.number,
     backgroundColor: PropTypes.string,
     iconColor: PropTypes.string,
     textColor: PropTypes.string,
@@ -60,6 +61,7 @@ export default class Search extends Component {
     backButtonAccessibilityLabel: 'Navigate up',
     closeButtonAccessibilityLabel: 'Clear search text',
     heightAdjust: 0,
+    customWidth: 0,
     backgroundColor: 'white',
     iconColor: 'gray',
     textColor: 'gray',
@@ -196,6 +198,7 @@ export default class Search extends Component {
     const {
       placeholder,
       heightAdjust,
+      customWidth,
       backgroundColor,
       iconColor,
       textColor,
@@ -315,7 +318,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   },
   navWrapper: {
-    width: Dimensions.get('window').width,
+    width: customWidth > 0 ? customWidth : Dimensions.get('window').width,
   },
   nav: {
     ...Platform.select({
