@@ -228,7 +228,7 @@ export default class Search extends Component {
       }]}>
         {
         this.state.show &&
-        <View style={[styles.navWrapper, { backgroundColor }]} >
+        <View style={[{width: customWidth > 0 ? customWidth : Dimensions.get('window').width}, { backgroundColor }]} >
           {
             Platform.OS === 'ios' && iOSPadding &&
             <View style={{ height: 20 }} />
@@ -268,7 +268,8 @@ export default class Search extends Component {
                 {
                   fontSize: fontSize, color: textColor, fontFamily: fontFamily,
                   marginLeft: hideBack ? 30 : 0,
-                  marginTop: (Platform.OS === 'ios' ? heightAdjust / 2 + 10 : 0)
+                  marginTop: (Platform.OS === 'ios' ? heightAdjust / 2 + 10 : 0),
+                  width: customWidth > 0 ? customWidth - 120 : Dimensions.get('window').width - 120
                 }
               ]}
               onChangeText={(input) => this._onChangeText(input)}
@@ -317,9 +318,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowRadius: 5,
   },
-  navWrapper: {
-    width: customWidth > 0 ? customWidth : Dimensions.get('window').width,
-  },
   nav: {
     ...Platform.select({
         android: {
@@ -337,7 +335,6 @@ const styles = StyleSheet.create({
     ...Platform.select({
         ios: { height: 30 },
         android: { height: 50 },
-    }),
-    width: Dimensions.get('window').width - 120,
+    })
   }
 });
